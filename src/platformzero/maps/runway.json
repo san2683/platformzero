@@ -1,0 +1,15 @@
+{
+  "schema": "platformzero-map-v1",
+  "authorship": "PlatformZero original synthetic example",
+  "level": {
+    "name": "runway",
+    "width": 24.0, "height": 12.0,
+    "platforms": [{"x": 0.0, "y": 8.0, "w": 24.0, "h": 4.0}],
+    "hazards": [],
+    "spawn": [1.0, 7.2],
+    "goal": {"x": 22.0, "y": 6.7, "w": 0.75, "h": 1.3},
+    "rules": {"gravity": 24.0, "speed": 6.0, "jump_speed": 10.0,
+      "jumps": 1, "dash": true, "dash_speed": 16.0, "dash_duration": 0.15,
+      "variable_jump": true, "jump_cut": 0.45}
+  }
+}

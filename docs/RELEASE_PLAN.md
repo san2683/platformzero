@@ -4,15 +4,16 @@
 
 The preparation checkout is separate from the research workspace. Do not move, rename, clean up or rewrite historical experiments to prepare a public release. Remote inventory is read-only; server capacity rules and training authorization remain outside this release task.
 
-## Proposed layout
+## Shipped v0.1.0 layout
 
 ~~~
 src/platformzero/
-  envs/
-  backends/synthetic/
-  backends/celeste/
-  training/
-  evaluation/
+  core.py
+  env.py
+  levels.py
+  cli.py
+  benchmark.py
+  maps/  # original synthetic JSON, packaged in the wheel
 examples/
 tests/
 docs/
@@ -33,11 +34,11 @@ Exact host/account/path metadata is recorded only in an ignored private inventor
 
 ## Acceptance before a runnable simulator release
 
-The documentation scaffold may be published while these implementation milestones remain open. Publishing it does not establish that a simulator package has shipped.
+The initial scaffold has now been followed by a runnable synthetic release. Original authored-map sampling and state recovery are the scope of v0.1.0. Commercial-game adapters and native-game parity remain future work; no Celeste map importer is included.
 
 1. Decide the public name after collision review.
 2. Trace each selected file to project-authored work or a specific compatible upstream license; isolate unresolved implementations.
-3. Extract the fast simulation backend and its explicit dependencies. Provide a user-local importer and redistributable authored example levels.
+3. Extract the fast simulation backend and its explicit dependencies. For v0.1.0, provide redistributable authored examples only; do not add commercial map import.
 4. Remove research-only paths, machine addresses, frozen-run identifiers and hidden fallback dependencies from runtime configuration.
 5. Package a single documented install and rollout path. Pin the supported runtime; document platform and numerical differences.
 6. Verify action masks, terminal conditions, state/history capture and deterministic restore using bounded authored examples. Do not rerun sealed scientific experiments.

@@ -1,0 +1,136 @@
+{
+  "schema": "platformzero-release-provenance-v1",
+  "version": "0.1.0",
+  "extraction": {
+    "path": "parkour_lab/core.py",
+    "sha256": "acb3649717ef84ba2794cc4464484aec7bd62718ba992f825c48cd5728f3fc9a",
+    "scope": "project-authored generic synthetic core only; no Celeste-specific modules",
+    "changes": [
+      "standalone immutable level contract and original JSON example maps",
+      "strict action/geometry validation and actual spawn support",
+      "allocation-free collision checks preserving reference synthetic trajectories",
+      "complete versioned JSON state capture/restore including button history and reward progress",
+      "removed private research generator/split/runtime dependencies"
+    ]
+  },
+  "excluded": [
+    "all Celeste replica/native bridge modules",
+    "commercial maps/assets/binaries",
+    "decompiled reference files",
+    "research checkpoints and experiment bundles"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/test.yml",
+      "origin": "newly_authored_for_PlatformZero_v0.1.0",
+      "bytes": 663,
+      "sha256": "43f029ffc7901eeb7595429e3a46e041e26517dbbfd42fae758b07f1d13a8944",
+      "license": "MIT"
+    },
+    {
+      "path": "examples/restore.py",
+      "origin": "newly_authored_for_PlatformZero_v0.1.0",
+      "bytes": 824,
+      "sha256": "bd125be47d8cd0a810cb944340caf25078247b5c6908943ff4f8a7b490af7089",
+      "license": "MIT"
+    },
+    {
+      "path": "src/platformzero/__init__.py",
+      "origin": "newly_authored_for_PlatformZero_v0.1.0",
+      "bytes": 367,
+      "sha256": "b520f8fb346c7844baf0ecedcddeb264fd6b317a2edb052f2edac153af70e4c5",
+      "license": "MIT"
+    },
+    {
+      "path": "src/platformzero/__main__.py",
+      "origin": "newly_authored_for_PlatformZero_v0.1.0",
+      "bytes": 79,
+      "sha256": "307299fda7b77d22c64cb51430ec75e5f59d78e9c948786afb3b2544fe45e4b7",
+      "license": "MIT"
+    },
+    {
+      "path": "src/platformzero/benchmark.py",
+      "origin": "newly_authored_for_PlatformZero_v0.1.0",
+      "bytes": 5206,
+      "sha256": "aa66932721f50c18e1e6585fcd2e8ff454092c528c1ccd612b6b1c81983e344f",
+      "license": "MIT"
+    },
+    {
+      "path": "src/platformzero/cli.py",
+      "origin": "newly_authored_for_PlatformZero_v0.1.0",
+      "bytes": 3611,
+      "sha256": "157108eb29322377b746bb8f5c001a75a6c9b15260585d2fd6328418daaf2318",
+      "license": "MIT"
+    },
+    {
+      "path": "src/platformzero/core.py",
+      "origin": "adapted_project_generic_synthetic_physics",
+      "bytes": 13981,
+      "sha256": "39d4158d40440fd4d4858766ecf1f0aff4a7bb560a13b765ba6d2ccfc47f21e9",
+      "license": "MIT"
+    },
+    {
+      "path": "src/platformzero/env.py",
+      "origin": "newly_authored_for_PlatformZero_v0.1.0",
+      "bytes": 3979,
+      "sha256": "849f524c4c06ae255bfae88883d43898c72085a53273e928d402af5938de18e5",
+      "license": "MIT"
+    },
+    {
+      "path": "src/platformzero/levels.py",
+      "origin": "newly_authored_for_PlatformZero_v0.1.0",
+      "bytes": 1269,
+      "sha256": "fd81b034122df5a5639c659eeb4c5571ee8e619adb0a84a0537e6329dab436f9",
+      "license": "MIT"
+    },
+    {
+      "path": "src/platformzero/maps/runway.json",
+      "origin": "newly_authored_for_PlatformZero_v0.1.0",
+      "bytes": 521,
+      "sha256": "f7b9a90429a605215a3e4cbe5415d847f06d7b6e43013313cb918bbb55cdbf6a",
+      "license": "MIT"
+    },
+    {
+      "path": "src/platformzero/maps/steps_and_spikes.json",
+      "origin": "newly_authored_for_PlatformZero_v0.1.0",
+      "bytes": 730,
+      "sha256": "e99740aac91524ee9e0d90dcb20fe7bcfb676aab862e971208e584e8f828d3e4",
+      "license": "MIT"
+    },
+    {
+      "path": "src/platformzero/maps/two_gaps.json",
+      "origin": "newly_authored_for_PlatformZero_v0.1.0",
+      "bytes": 631,
+      "sha256": "a8627f7cbbb85f5094da58d7c1492a10a41e3644256000b76fa215e86a69dddd",
+      "license": "MIT"
+    },
+    {
+      "path": "tests/test_core.py",
+      "origin": "newly_authored_for_PlatformZero_v0.1.0",
+      "bytes": 7312,
+      "sha256": "70a77e44c14579c92e02451a268e29b5d945c4d682ab126dcd43b38f776fd244",
+      "license": "MIT"
+    },
+    {
+      "path": "tests/test_env.py",
+      "origin": "newly_authored_for_PlatformZero_v0.1.0",
+      "bytes": 5512,
+      "sha256": "c2d334e37382ce8e9ead9a9ca38a2cbd8bcdc4a0669f93e0bbe829b627a7ffa5",
+      "license": "MIT"
+    },
+    {
+      "path": "pyproject.toml",
+      "origin": "newly_authored_for_PlatformZero_v0.1.0",
+      "bytes": 776,
+      "sha256": "ba4c13b70d7273e71fccd1cbbce925ce4f6c32f08c92681b93720e46c0592849",
+      "license": "MIT"
+    },
+    {
+      "path": "LICENSE",
+      "origin": "newly_authored_for_PlatformZero_v0.1.0",
+      "bytes": 1082,
+      "sha256": "874476c4dd5da760e4fe9869a5a024fdc9ef52725442f41f31d8e09ffe5e12ce",
+      "license": "MIT"
+    }
+  ]
+}

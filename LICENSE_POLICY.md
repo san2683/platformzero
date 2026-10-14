@@ -1,5 +1,7 @@
-# License policy — initial publication scaffold
+# License and distribution scope
 
-No project-wide code license has been chosen at this stage. Do not add a blanket MIT/Apache notice over unresolved third-party implementations.
+The MIT license in `LICENSE` covers the published PlatformZero synthetic backend, authored example maps, tests, tooling and documentation. `provenance/RELEASED_FILES.json` records the implementation actually distributed in this version.
 
-Before distributing implementation code, determine project authorship, choose the project license, and include exact third-party notices for the sources actually distributed. Commercial game content and binaries are excluded. Documentation here describes a proposed release and is not a legal clearance opinion. Public availability of this scaffold should not be interpreted as a licensed simulator release.
+This release extracts only the project's generic synthetic physics, with new standalone packaging, state restoration and sampling code. It contains no Celeste-specific replica core, decompiled reference tree, native bridge, commercial map, sprite, music or game binary. Existing research candidates in `SOURCE_SELECTION.csv` are not an export manifest and are not all included.
+
+Future game-specific adapters require a separate file-by-file provenance and notice review. The project license must not be applied over unresolved third-party implementations or commercial content. References to upstream projects do not grant rights to the full commercial game and do not imply endorsement.

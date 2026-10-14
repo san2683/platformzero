@@ -1,0 +1,41 @@
+{
+  "schema": "platformzero-wheel-validation-v1",
+  "version": "0.1.0",
+  "wheel": "platformzero-0.1.0-py3-none-any.whl",
+  "wheel_bytes": 18058,
+  "wheel_sha256": "27ef2bdeb58c0c654a66e629d55852b39b07cacf98d72ca6a962edd041ab64ae",
+  "members": 17,
+  "bundled_original_maps": 3,
+  "runtime_dependencies": [],
+  "installed_wheel_tests_passed": 29,
+  "runtime_tested": "Windows11 / Python3.12.6",
+  "renderer_or_native_game_used": false,
+  "generic_reference_comparison": {
+    "scope": "generic synthetic core equivalence on original authored maps only; no commercial game/map loaded",
+    "reference_sha256": "acb3649717ef84ba2794cc4464484aec7bd62718ba992f825c48cd5728f3fc9a",
+    "cases": 9,
+    "actual_physics_frames_each_backend": 7200,
+    "matched_fields": [
+      "x",
+      "y",
+      "vx",
+      "vy",
+      "grounded",
+      "jumps_left",
+      "dash_ready",
+      "dash_frames",
+      "jump_held",
+      "dash_held",
+      "jump_active",
+      "frames",
+      "max_x",
+      "total_reward",
+      "last_reward",
+      "status",
+      "last_terms"
+    ],
+    "episode_resets": 2,
+    "status": "PASS"
+  },
+  "created_utc": "2026-10-14T05:26:58.524869+00:00"
+}

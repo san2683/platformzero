@@ -1,5 +1,9 @@
 # Source and asset provenance
 
+## Shipped v0.1.0
+
+Only the project's generic synthetic physics has been extracted. New package wrappers, state restoration, sampling/benchmark tools, tests and all three example maps were authored for PlatformZero. See `RELEASED_FILES.json` for exact hashes and extraction changes. No code from the Celeste-specific replica/native integration candidates below is distributed in this version. No real Celeste map importer is included.
+
 ## Developer-published Celeste source
 
 - Repository: https://github.com/NoelFB/Celeste

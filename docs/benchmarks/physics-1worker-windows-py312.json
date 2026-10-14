@@ -1,0 +1,91 @@
+{
+  "schema": "platformzero-benchmark-v1",
+  "created_utc": "2026-10-14T05:25:48.474172+00:00",
+  "package_version": "0.1.0",
+  "engine": "platformzero-synthetic-v1",
+  "source_SHA256": {
+    "core.py": "39d4158d40440fd4d4858766ecf1f0aff4a7bb560a13b765ba6d2ccfc47f21e9",
+    "env.py": "849f524c4c06ae255bfae88883d43898c72085a53273e928d402af5938de18e5",
+    "levels.py": "fd81b034122df5a5639c659eeb4c5571ee8e619adb0a84a0537e6329dab436f9",
+    "benchmark.py": "aa66932721f50c18e1e6585fcd2e8ff454092c528c1ccd612b6b1c81983e344f"
+  },
+  "level_SHA256": "4ff9c199571e0102017b77a6fe38c136f3ad72938418ff56feea2bc347a7f58b",
+  "hardware": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "machine": "AMD64",
+    "processor": "AMD64 Family 25 Model 117 Stepping 2, AuthenticAMD",
+    "logical_cpus": 16,
+    "python": "3.12.6"
+  },
+  "config": {
+    "mode": "physics",
+    "level": "two_gaps",
+    "steps_per_worker": 200000,
+    "workers": 1,
+    "warmup_steps_per_worker": 2000,
+    "repeats": 3,
+    "frame_skip": 4
+  },
+  "scope": "Synthetic CPU simulation only. No rendering, models, gradients or game process. Observations included only in env mode. Reset costs included. Warmup actual frames reported separately. Multiworker end-to-end includes process startup/warmup/shutdown; not a steady-state-only claim.",
+  "median_physics_fps_end_to_end": 285779.8517728833,
+  "median_decisions_per_second_end_to_end": 0.0,
+  "trials": [
+    {
+      "repeat": 0,
+      "workers": [
+        {
+          "worker_index": 0,
+          "physics_frames": 200000,
+          "decisions": 0,
+          "episode_resets": 939,
+          "warmup_physics_frames_excluded": 2000,
+          "sampling_seconds": 0.6850347999716178
+        }
+      ],
+      "actual_physics_frames": 200000,
+      "actual_decisions": 0,
+      "wall_seconds_including_startup_warmup": 0.6925035000313073,
+      "physics_frames_per_second_end_to_end": 288807.20457146893,
+      "decisions_per_second_end_to_end": 0.0,
+      "single_worker_sampling_physics_fps": 291955.97071606637
+    },
+    {
+      "repeat": 1,
+      "workers": [
+        {
+          "worker_index": 0,
+          "physics_frames": 200000,
+          "decisions": 0,
+          "episode_resets": 939,
+          "warmup_physics_frames_excluded": 2000,
+          "sampling_seconds": 0.6921952000120655
+        }
+      ],
+      "actual_physics_frames": 200000,
+      "actual_decisions": 0,
+      "wall_seconds_including_startup_warmup": 0.6998394000111148,
+      "physics_frames_per_second_end_to_end": 285779.8517728833,
+      "decisions_per_second_end_to_end": 0.0,
+      "single_worker_sampling_physics_fps": 288935.83774708904
+    },
+    {
+      "repeat": 2,
+      "workers": [
+        {
+          "worker_index": 0,
+          "physics_frames": 200000,
+          "decisions": 0,
+          "episode_resets": 939,
+          "warmup_physics_frames_excluded": 2000,
+          "sampling_seconds": 0.7040021999855526
+        }
+      ],
+      "actual_physics_frames": 200000,
+      "actual_decisions": 0,
+      "wall_seconds_including_startup_warmup": 0.7118699999991804,
+      "physics_frames_per_second_end_to_end": 280950.1734870556,
+      "decisions_per_second_end_to_end": 0.0,
+      "single_worker_sampling_physics_fps": 284090.02131542255
+    }
+  ]
+}

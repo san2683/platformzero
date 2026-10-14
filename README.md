@@ -1,49 +1,86 @@
 # PlatformZero
 
-**跑酷平台搭建器：将二维平台游戏的地图、动作接口与物理规则接入独立、无渲染的模拟环境，用于快速并行采样。** 从 Celeste 适配开始。
+**跑酷平台搭建器：独立、无渲染的二维平台模拟环境，用于快速并行采样。**
 
-A headless 2D platformer simulation and environment builder for fast reinforcement-learning sampling, starting with Celeste adapters.
+A headless 2D platformer simulation backend for reproducible sampling. **v0.1.0 is installable and runnable** with Python 3.10+ and no runtime dependencies. The shipped backend uses original synthetic maps and simplified physics; it does not import Celeste maps, require a game installation, or claim Celeste physics parity.
 
-**Status: early development / documentation scaffold.** This repository currently contains the release plan, source-selection records and publication boundaries. It does **not yet contain an installable package or runnable Celeste simulator**. PlatformZero remains a working project name.
+## Install and sample
 
-The intended workflow is:
+From this checkout:
 
-```text
-Supported game data (imported locally by the user)
-        + explicit action and physics adapter
-        → standalone headless environment
-        → parallel rollouts, state restore and reproducible benchmarks
+```sh
+python -m pip install .
+python -m platformzero sample --level two_gaps --episodes 20 --seed 42
 ```
 
-The original game is not required to render or run during headless sampling. Physics parity and native-game transfer must be measured for each supported adapter; approximation is not advertised as exact replication.
+Or install this GitHub version directly (Git required):
 
-## What the project is intended to deliver
+```sh
+python -m pip install "git+https://github.com/san2683/platformzero.git@v0.1.0"
+platformzero sample --level runway --policy right --episodes 3
+```
 
-- A fast, headless platformer simulation backend for parallel sampling.
-- Explicit game adapters, legal action/duration contracts and deterministic state capture/restore.
-- A stable environment API for external training pipelines, including shared-policy PPO.
-- Reproducible environment benchmarks and policy evaluations.
-- User-local import of supported game data; an original synthetic example that needs no commercial game.
+This does not imply a PyPI publication. `random` samples legal actions; `right` is a minimal scripted example for the flat runway, not a trained Bot.
 
-These are delivery targets, not a claim that every feature has already been extracted into this repository.
+## What ships
 
-## Publication boundary
+- Fixed 60 Hz CPU physics with axis-separated collision substeps.
+- Edge-triggered jumping, optional double jump, jump release shortening, eight-direction dash, static solids/hazards and goal/death/timeout handling.
+- Three bundled **original** JSON maps: `runway`, `two_gaps`, `steps_and_spikes`.
+- A five-value headless environment API, actual-frame accounting and a seeded action sampler.
+- Versioned JSON-safe state capture/restore including velocities, resources, held-button history, reward state, immutable level fingerprint and sampler RNG.
+- Sequential and spawned multiprocessing throughput benchmarks, tests and Windows/Linux CI configuration.
 
-Do not distribute commercial game binaries, original maps, sprites, music, game DLLs, decompiled reference trees, private experiment bundles, checkpoints or credentials here. A local importer does not itself establish legal clearance for every code component.
+No renderer, display server, commercial maps/assets, Celeste importer, game DLLs, model checkpoints or training framework are included. Moving platforms, wall climbing, coyote time, native-game replication and a PPO trainer are **not implemented in v0.1.0**.
 
-The simulator is the central deliverable. A generic toy environment or a training wrapper alone must not be presented as a finished fast Celeste simulator.
+## Python API
 
-See [release plan](docs/RELEASE_PLAN.md), [source provenance](provenance/UPSTREAM.md), [selection ledger](provenance/SOURCE_SELECTION.csv), and [name review](docs/NAME_REVIEW.md).
+```python
+from platformzero import HeadlessEnv, load_example
 
-## Current contents and next steps
+env = HeadlessEnv(load_example("two_gaps"), frame_skip=4, seed=42)
+observation, info = env.reset()
+while True:
+    observation, reward, terminated, truncated, info = env.step(env.sample_action())
+    # May be <4 on the final decision. Count actual frames, not decisions * 4.
+    actual_frames = info["physics_frames_delta"]
+    if terminated or truncated:
+        break
+```
 
-- Three research workspaces inventoried without remote mutation.
-- Public/private boundaries and candidate source hashes recorded.
-- No research files moved or deleted.
-- This initial public scaffold contains documentation and a candidate source ledger, not simulator implementation files.
-- Next: trace and extract the simulation backend and its explicit dependencies.
-- Then: add a user-local map importer, authored synthetic levels, installation instructions and deterministic rollout/restore checks.
-- Before a runnable release: publish a measured throughput benchmark and supported/approximate/unsupported mechanism table.
-- Source provenance, runnable packaging and reproducibility acceptance remain open.
+`env.step()` accepts either `Action(move=-1/0/1, jump=False/True, dash=0..8)` or the factorized indices `[horizontal 0..2, jump 0..1, dash 0..8]` (54 joint actions). See [API and physics contract](docs/API.md) for direction indices, observations and supported behavior. This interface is separate from any research model's contract.
 
-No blanket code license is assigned at this preparation stage. Third-party license notices must follow the files they cover.
+## Capture and restore
+
+```python
+import json
+
+saved = json.loads(json.dumps(env.get_state()))
+clone = HeadlessEnv()
+clone.set_state(saved)
+# Same subsequent action stream => same states, rewards and terminal decisions.
+```
+
+Run the round-trip example and installed-package tests:
+
+```sh
+python examples/restore.py
+python -m unittest discover -s tests -v
+```
+
+Snapshots include the environment's action-sampler RNG, not an external policy's state. Invalid restores are rejected before changing the environment. Deterministic continuation is tested on the same runtime; cross-version/platform floating-point parity is not promised.
+
+## Throughput
+
+```sh
+platformzero benchmark --mode physics --steps 200000 --workers 1 --repeats 3
+platformzero benchmark --mode env --steps 100000 --workers 4 --repeats 3
+```
+
+Physics mode measures ticks only. Environment mode includes observations, rewards and terminal/reset handling. Both report **actual physics frames** separately from decisions. End-to-end time includes warmup and, with multiple workers, process startup and shutdown. See the [measured benchmark report](docs/BENCHMARKS.md) and raw JSON results; these are local CPU measurements, not GPU training or native-game performance claims.
+
+## Source, license and release scope
+
+The published synthetic backend, examples and tooling use the [MIT license](LICENSE). Its generic physics core was extracted and revised from this project's authored synthetic environment, with source hashes and modifications recorded in [released-file provenance](provenance/RELEASED_FILES.json).
+
+Commercial-game-specific research modules remain outside this package. References in [source provenance](provenance/UPSTREAM.md) do not mean those implementations have been shipped or licensed by this release. See [license policy](LICENSE_POLICY.md), [release plan](docs/RELEASE_PLAN.md) and [working-name review](docs/NAME_REVIEW.md).
